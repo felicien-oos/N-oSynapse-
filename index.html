@@ -3,231 +3,274 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Futuristic Assistant - Organiseur Vocal & Texte</title>
+<title>NeoSynapse - Bienvenue</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-
+  /* Style futuriste simple */
   body {
     margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    font-family: 'Orbitron', sans-serif;
-    color: #00ffea;
+    color: #e0e0e0;
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
   }
   header {
-    padding: 1rem;
-    font-size: 2.4rem;
+    text-align: center;
+    padding: 2rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #00fff7;
-    text-shadow: 0 0 10px #00fff7;
-    user-select: none;
+    letter-spacing: 0.15em;
+    color: #00ffd5;
+    text-shadow: 0 0 10px #00ffd5, 0 0 20px #00ffd5;
   }
   main {
     flex: 1;
-    width: 90vw;
-    max-width: 600px;
+    padding: 1rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    gap: 1.5rem;
+  }
+  .buttons {
+    display: flex;
+    gap: 1rem;
     margin-bottom: 2rem;
   }
   button {
-    background: linear-gradient(90deg, #00fff7, #00bcd4);
+    background: #00ffd5;
     border: none;
-    border-radius: 12px;
-    padding: 1.3rem;
-    font-size: 1.4rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: #002b3a;
+    color: #022;
+    border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 0 12px #00fff7;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 8px #00ffd5;
+    transition: background 0.3s ease;
   }
   button:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 20px #00fff7, 0 0 30px #00bcd4;
+    background: #00e0c0;
   }
-  #content {
-    background: rgba(0, 255, 234, 0.1);
-    border-radius: 16px;
-    padding: 1.2rem 1.5rem;
-    min-height: 280px;
-    color: #a5fff7;
-    box-shadow: 0 0 12px #00fff7 inset;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  #botMessage {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  textarea {
+  section {
     width: 100%;
-    height: 90px;
+    max-width: 600px;
+    background: #112f3c;
+    padding: 1rem 2rem;
     border-radius: 12px;
-    border: none;
-    resize: none;
+    box-shadow: 0 0 15px #00ffd5aa;
+    margin-bottom: 2rem;
+    color: #d0f0f5;
+    min-height: 200px;
+  }
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 1rem;
+    background: #001f27;
+    color: #777;
+    border-top: 1px solid #00ffd5aa;
+  }
+  footer p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+  /* Sonnette icon */
+  .bell-icon {
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #00ffd5;
+    margin-left: 10px;
+  }
+  input[type="text"] {
+    width: 100%;
     padding: 0.8rem;
-    font-family: 'Orbitron', monospace;
-    font-size: 1.1rem;
-    background: rgba(0,0,0,0.2);
-    color: #00fff7;
-    box-shadow: inset 0 0 5px #00fff7;
-  }
-  #controls {
-    margin-top: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-  }
-  #listenBtn, #sendBtn {
-    background: #00bcd4;
+    font-size: 1rem;
+    border-radius: 8px;
     border: none;
-    padding: 0.7rem 1.4rem;
-    font-weight: 700;
-    color: #002b3a;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 0 8px #00fff7;
-    transition: background 0.3s ease;
-  }
-  #listenBtn:hover, #sendBtn:hover {
-    background: #00fff7;
-  }
-  #backBtn {
-    margin-top: 1rem;
-    align-self: center;
-    background: #003f4a;
-    border: none;
-    color: #00fff7;
-    padding: 0.8rem 2rem;
-    font-weight: 700;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 0 10px #00fff7;
-    transition: background 0.3s ease;
-  }
-  #backBtn:hover {
-    background: #005a6b;
+    margin-top: 0.5rem;
   }
 </style>
 </head>
 <body>
-<header>NEOSYNAPSE - Ton Assistant Futuriste</header>
+
+<header>NeoSynapse<br /><small>Bienvenue sur le site</small></header>
+
 <main>
-  <button id="organizeBtn">J'organise ma journée</button>
-  <button id="talkBtn">Parler avec NEOSYNAPSE</button>
+
+  <div class="buttons">
+    <button id="btn-discuter">Discuter avec lui</button>
+    <button id="btn-organiser">Organiser ta journée</button>
+    <button id="btn-discussion-vocale">Discussions vocales</button>
+  </div>
+
+  <!-- Sections interactives, cachées par défaut -->
+  <section id="sect-discuter" style="display:none;">
+    <h2>Discuter</h2>
+    <p>Salut, pose-moi une question, je suis là pour discuter avec toi.</p>
+    <input type="text" id="user-question" placeholder="Pose ta question..." />
+    <button onclick="handleUserQuestion()">Envoyer</button>
+    <span class="bell-icon" title="Clique pour parler" onclick="startVoiceInput()">🔔</span>
+    <p id="answer"></p>
+  </section>
+
+  <section id="sect-organiser" style="display:none;">
+    <h2>Organiser ta journée</h2>
+    <p>Je vais organiser ta journée, donne-moi tout ce que tu vas faire aujourd'hui :</p>
+    <textarea id="day-plan" rows="6" style="width:100%; border-radius:8px; padding:0.8rem;"></textarea>
+    <button onclick="organizeDay()">Organiser</button>
+    <div id="day-table" style="margin-top:1rem;"></div>
+  </section>
+
+  <section id="sect-discussion-vocale" style="display:none;">
+    <h2>Discussions vocales</h2>
+    <p>Clique sur la sonnette et parle, ta voix sera convertie en texte automatiquement.</p>
+    <button onclick="startVoiceInput()">🔔 Commencer à parler</button>
+    <textarea id="voice-text" rows="4" style="width:100%; margin-top:1rem;" placeholder="Le texte converti apparaîtra ici..."></textarea>
+  </section>
+
 </main>
 
-<div id="content" style="display:none;">
-  <div id="botMessage">Bienvenue, que veux-tu faire ?</div>
-  <textarea id="userInput" placeholder="Écris ici ou clique sur 🎤 pour parler..."></textarea>
-  <div id="controls">
-    <button id="listenBtn">🎤</button>
-    <button id="sendBtn">Envoyer</button>
-  </div>
-  <button id="backBtn">Retour</button>
-</div>
+<footer>
+  <p><strong>Règles de confidentialité :</strong> Merci de respecter les règles. Pas de questions inappropriées ni de demandes interdites. En cas de non respect, nous ne répondrons pas à tes questions.</p>
+</footer>
 
 <script>
-  const organizeBtn = document.getElementById('organizeBtn');
-  const talkBtn = document.getElementById('talkBtn');
-  const content = document.getElementById('content');
-  const botMessage = document.getElementById('botMessage');
-  const userInput = document.getElementById('userInput');
-  const listenBtn = document.getElementById('listenBtn');
-  const sendBtn = document.getElementById('sendBtn');
-  const backBtn = document.getElementById('backBtn');
+  // Afficher/cacher sections selon bouton cliqué
+  const btnDiscuter = document.getElementById('btn-discuter');
+  const btnOrganiser = document.getElementById('btn-organiser');
+  const btnDiscussionVocale = document.getElementById('btn-discussion-vocale');
 
-  let mode = ''; // 'organize' or 'talk'
+  const sectDiscuter = document.getElementById('sect-discuter');
+  const sectOrganiser = document.getElementById('sect-organiser');
+  const sectDiscussionVocale = document.getElementById('sect-discussion-vocale');
 
-  function speak(text) {
-    if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'fr-FR';
-      utterance.rate = 1;
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
+  function hideAllSections() {
+    sectDiscuter.style.display = 'none';
+    sectOrganiser.style.display = 'none';
+    sectDiscussionVocale.style.display = 'none';
+  }
+
+  btnDiscuter.onclick = () => {
+    hideAllSections();
+    sectDiscuter.style.display = 'block';
+    clearDiscussion();
+  };
+
+  btnOrganiser.onclick = () => {
+    hideAllSections();
+    sectOrganiser.style.display = 'block';
+    clearOrganizer();
+  };
+
+  btnDiscussionVocale.onclick = () => {
+    hideAllSections();
+    sectDiscussionVocale.style.display = 'block';
+    clearVoice();
+  };
+
+  // --- GOOGLE SEARCH INTEGRATION ---
+  const apiKey = "TA_CLE_API"; // Remplace par ta clé API Google
+  const cx = "TON_ID_CSE";     // Remplace par ton ID moteur de recherche personnalisé
+
+  async function searchOnGoogle(query) {
+    try {
+      const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`);
+      const data = await response.json();
+      if (data.items && data.items.length > 0) {
+        return data.items[0].snippet;
+      } else {
+        return "Aucun résultat trouvé.";
+      }
+    } catch (error) {
+      return "Erreur lors de la recherche Google.";
     }
   }
 
-  organizeBtn.onclick = () => {
-    mode = 'organize';
-    main.style.display = 'none';
-    content.style.display = 'flex';
-    botMessage.textContent = "Dis-moi ce que tu as prévu aujourd'hui, je vais organiser ta journée.";
-    speak(botMessage.textContent);
-    userInput.value = '';
-    userInput.focus();
-  };
+  window.repeatCount = {};
 
-  talkBtn.onclick = () => {
-    mode = 'talk';
-    main.style.display = 'none';
-    content.style.display = 'flex';
-    botMessage.textContent = "Je t'écoute, parle ou écris ce que tu veux.";
-    speak(botMessage.textContent);
-    userInput.value = '';
-    userInput.focus();
-  };
+  async function handleUserQuestion() {
+    const questionInput = document.getElementById("user-question");
+    const question = questionInput.value.trim();
+    const answerP = document.getElementById("answer");
 
-  backBtn.onclick = () => {
-    mode = '';
-    content.style.display = 'none';
-    main.style.display = 'flex';
-    speechSynthesis.cancel();
-  };
-
-  sendBtn.onclick = () => {
-    const input = userInput.value.trim();
-    if (!input) return;
-    userInput.value = '';
-    if (mode === 'organize') {
-      // Simple organisation de journée (exemple)
-      const agenda = organizeDay(input);
-      botMessage.textContent = "Voici ta journée organisée :\n" + agenda;
-      speak(botMessage.textContent);
-    } else if (mode === 'talk') {
-      const reply = simpleChatReply(input);
-      botMessage.textContent = reply;
-      speak(reply);
+    if (!question) {
+      answerP.innerText = "Pose une question, s'il te plaît.";
+      return;
     }
-  };
 
-  // Exemple basique d'organisation de journée
-  function organizeDay(text) {
-    // Découper la phrase en phrases séparées par "et" ou ","
-    const parts = text.split(/,| et /i).map(s => s.trim());
-    let agenda = "";
-    parts.forEach((part, i) => {
-      agenda += `${i+1}. ${part}\n`;
+    // Vérification répétition question (devoir)
+    window.repeatCount[question] = (window.repeatCount[question] || 0) + 1;
+
+    if (window.repeatCount[question] >= 5) {
+      answerP.innerText = "Je ne peux pas faire tes devoirs, mais je peux t'aider pour autre chose.";
+      return;
+    }
+
+    answerP.innerText = "Recherche en cours...";
+
+    const result = await searchOnGoogle(question);
+    answerP.innerText = result;
+  }
+
+  // --- Organiser ta journée ---
+  function organizeDay() {
+    const text = document.getElementById("day-plan").value.trim();
+    const dayTable = document.getElementById("day-table");
+    if (!text) {
+      dayTable.innerHTML = "<p>Merci de décrire ta journée.</p>";
+      return;
+    }
+
+    const lines = text.split('\n').filter(line => line.trim() !== "");
+    let html = "<table border='1' cellpadding='8' cellspacing='0' style='width:100%; border-collapse:collapse; color:#00ffd5;'>";
+    html += "<tr><th>Heure / Moment</th><th>Activité</th></tr>";
+    lines.forEach((line, i) => {
+      html += `<tr><td>${i+1}</td><td>${line}</td></tr>`;
     });
-    return agenda;
+    html += "</table>";
+
+    dayTable.innerHTML = html;
   }
 
-  // Exemple très simple de réponses "chat"
-  function simpleChatReply(text) {
-    const lower = text.toLowerCase();
-    if (lower.includes("bonjour") || lower.includes("salut")) {
-      return "Salut ! Je suis là pour t'aider aujourd'hui.";
+  // --- Discussions vocales ---
+  function startVoiceInput() {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert("Désolé, la reconnaissance vocale n'est pas supportée par ton navigateur.");
+      return;
     }
-    if (lower.includes("comment ça va")) {
-      return "Je vais super bien, merci ! Et toi ?";
-    }
-    if (lower.includes("aide")) {
-      return "Je peux organiser ta journée ou simplement discuter avec toi.";
-    }
-    if (lower.includes("devoir")) {
-      return "Je ne peux pas faire tes devoirs, mais je peux t'aider à organiser ton travail !";
-    }
-    return "Désolé, je ne comprends pas tout encore, mais je m'améliore chaque jour.";
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = "fr-FR";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      document.getElementById("voice-text").value += transcript + " ";
+    };
+    recognition.onerror = function(event) {
+      alert("Erreur de reconnaissance vocale : " + event.error);
+    };
+
+    recognition.start();
   }
 
-  // Reconnaissance vocale
-  let recognition;
-  if ('webkitSpeechRecognition' in window ||
+  // --- Nettoyer les champs ---
+  function clearDiscussion() {
+    document.getElementById("user-question").value = "";
+    document.getElementById("answer").innerText = "";
+    window.repeatCount = {};
+  }
+  function clearOrganizer() {
+    document.getElementById("day-plan").value = "";
+    document.getElementById("day-table").innerHTML = "";
+  }
+  function clearVoice() {
+    document.getElementById("voice-text").value = "";
+  }
+</script>
+
+</body>
+</html>
